@@ -3,6 +3,8 @@
 import random
 import os
 
+
+
 def palavra():
     limpa_tela()
     print('Seja bem vindo ao jogo da forca')
@@ -12,7 +14,9 @@ def palavra():
     sistema = random.choice(palavras)
     caractere = []
     caractere = ["_" for letra in sistema]
-    print(caractere)
+    for i in caractere:
+        print(i, end=' ')
+    print('\n')
     tentativas = 6
     while tentativas > 0:
         print(f'\nVocê tem {tentativas} tentativas.')
@@ -34,18 +38,24 @@ def palavra():
             else:
                 print(f'\nVocê errou!! Você digitou: {adivinha}. Não é essa palavra!\n')
                 tentativas -= 1
-                print(caractere)
+                for i in caractere:
+                    print(i, end=' ')
+                print('\n')
                 continue
         elif game in letra_errada or game in caractere:
             print('\nVocê já tentou essa letra, tente novamente\n')
-            print(caractere, '\n')
+            for i in caractere:
+                print(i, end=' ')
+            print('\n')
             continue
         elif game.lower() in sistema:
             print('\nParabéns você acertou! Tente novamente.\n')
             for i,letra in enumerate(sistema):
                 if letra == game.lower():
                     caractere[i] = caractere[i].replace('_', letra)
-            print(caractere)
+            for i in caractere:
+                print(i, end=' ')
+            print('\n')
             if '_' not in caractere:
                 print(f'\nParabéns! Você ganhou! A palavra é {sistema}.\n')
                 play = input('Quer jogar de novo?? s/n ')
@@ -59,7 +69,9 @@ def palavra():
             print('\nEssa letra não faz parte da palavra, sinto muito.\n')
             letra_errada.append(game)
             tentativas -= 1
-            print(caractere)
+            for i in caractere:
+                print(i, end=' ')
+            print('\n')
     if tentativas == 0:
         print('\nGAME OVER\n')
         play = input('Quer jogar de novo?? s/n ')
