@@ -18,7 +18,25 @@ def palavra():
         print(f'\nVocê tem {tentativas} tentativas.')
         print(f'Letras erradas: {letra_errada}')
         game = input('Digite uma letra: ')
-        if game in letra_errada or game in caractere:
+        if len(game) > 1:
+            print('\nVocê digitou mais que uma letra! Quer tentar adivinhar a palavra inteira?\n')
+            adivinha = input('Digite a palavra inteira: ')
+            adivinha = adivinha.lower()
+            if adivinha == sistema:
+                print(f'\nParabéns! Você ganhou! A palavra é {sistema}.\n')
+                play = input('Quer jogar de novo?? s/n ')
+                play = play.upper()
+                if play == 'S' or play == 'SIM':
+                    palavra()
+                else:
+                    print('\nFIM DE JOGO!\n')          
+                break
+            else:
+                print(f'\nVocê errou!! Você digitou: {adivinha}. Não é essa palavra!\n')
+                tentativas -= 1
+                print(caractere)
+                continue
+        elif game in letra_errada or game in caractere:
             print('\nVocê já tentou essa letra, tente novamente\n')
             print(caractere, '\n')
             continue
@@ -49,7 +67,7 @@ def palavra():
         if play == 'S' or play == 'SIM':
             palavra()
         else:
-            print('FIM DE JOGO!')
+            print('\nFIM DE JOGO!\n')
 
 def limpa_tela():
     if os.name == 'nt':
